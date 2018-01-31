@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE search-metadata PUBLIC
+        "-//Maisis//DTD Search MetaData 1.5//EN"
+        "/META-INF/search-metadata_1_5.dtd">
+
+
+<search-metadata>
+    <name>metragemCaboOptico</name>
+    <label>OSP.label.item.16_desc</label>
+    <description>OSP.label.item.16_desc</description>
+    <search-engine-class>pt.maisis.search.dao.db.SimpleVelocitySearchEngineDao</search-engine-class>
+    <data-source>java:comp/env/jdbc/ReportsDS</data-source>
+    <sql-template>
+        #if ($queryType == 'count')
+        select count(*) from
+        #else
+        SELECT $sql.getCsv($resultParams) from
+        #end
+
+        (SELECT
+        1 as sigla_uf,
+        1 as nome_uf,
+        1 as municipio <!--,
+        1 as sigla_localidade,
+        1 as nome_localidade,
+        1 as sigla_estacao_abastecedora,
+        1 as nome_estacao_abastecedora,
+        1 as area_estacao_rede_optica_GPON,
+        1 as area_estacao_rede_optica_multiuso,
+        1 as etiqueta,
+        1 as tipo_interno,
+        1 as tipo,
+        1 as fibras,
+        1 as codigo_SAP,
+        1 as fabricante,
+        1 as modelo,
+        1 as comp_lance_usuario,
+        1 as comp_lance_netwin,
+        1 as secao_maxima,
+        1 as as-built,
+        1 as proprietario,
+        1 as identificacao_terceiro,
+        1 as fora_padrao,
+        1 as rede,
+        1 as destinacao,
+        1 as numero_cabo,
+        1 as numero_lance,
+        1 as numero_cabo_primario,
+        1 as numero_cabo_secundario,
+        1 as nome_projeto,
+        1 as origem_rede,
+        1 as origem_infraestrutura,
+        1 as destino_rede,
+        1 as destino_infraestrutura,
+        1 as tipo_tracado,
+        1 as estado_projeto,
+        1 as data_estado_projeto,
+        1 as estado_ciclo_vida,
+        1 as data_estado_ciclo_vida,
+        1 as rastreabilidade_origem,
+        1 as disponibilizacao,
+        1 as id_geoplex-geosite,
+        1 as usuario_criacao,
+        1 as empresa_criacao,
+        1 as data_criacao,
+        1 as usuario_atualizacao,
+        1 as empresa_atualizacao,
+        1 as data_atualizacao --> FROM DUAL;
+        ) t
+
+        where
+
+        t.sigla_uf    = ${uf}
+        and t.nome_uf   = ${municipio}
+        and t.muncipio   = ${localidade}
+
+
+        #if ($orderParams)
+        ORDER BY $sql.getCsv($orderParams)
+        #end
+
+    </sql-template>
+
+    <search-params>
+
+        <search-param>
+            <name>beginline1</name>
+            <field>nofield</field>
+            <operator>=</operator>
+            <container>
+                <label>nolabel</label>
+                <type>begin_line</type>
+                <size>0</size>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>search_distinct_hidden</name>
+            <field>search_distinct_hidden</field>
+            <operator>=</operator>
+            <container>
+                <label>distinct</label>
+                <type>hidden</type>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>search_totals_hidden</name>
+            <field>search_totals_hidden</field>
+            <operator>=</operator>
+            <container>
+                <label>distinct</label>
+                <type>hidden</type>
+            </container>
+        </search-param>
+
+
+        <search-param>
+            <name>uf</name>
+            <field>uf</field>
+            <operator>=</operator>
+            <container>
+                <label>REPORTS.search.unidadeFederativa</label>
+                <type>select</type>
+                <size>25</size>
+                <default-value-list>
+                    <sql>
+                        <statement>select a.id, a.description || ' (' || a.name || ')'
+                            from location a
+                            join cat_entity b
+                            on b.id = a.id_cat_entity
+                            where b.name = 'LOC.LIMIT.LOCALIZATION.REGION'
+                            order by 2
+                        </statement>
+                    </sql>
+                </default-value-list>
+                <validation>
+                    <required>true</required>
+                </validation>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>municipio</name>
+            <field>municipio</field>
+            <operator>=</operator>
+            <container>
+                <label>REPORTS.search.municipio</label>
+                <type>select</type>
+                <size>25</size>
+                <ajax>
+                    <sql>
+                        <statement>select a.id, upper(a.name)
+                            from location a
+                            join cat_entity b
+                            on b.id = a.id_cat_entity
+                            where b.name = 'LOC.LIMIT.LOCALIZATION.CITYAREA'
+                            and A.Id_Default_Limit = ?
+                            order by 2
+                        </statement>
+                    </sql>
+                    <source>uf</source>
+                    <parameters>
+                        <parameter>uf</parameter>
+                    </parameters>
+                </ajax>
+                <validation>
+                    <required>false</required>
+                </validation>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>localidade</name>
+            <field>localidade</field>
+            <operator>=</operator>
+            <container>
+                <label>REPORTS.search.localidade</label>
+                <type>select</type>
+                <size>25</size>
+                <ajax>
+                    <sql>
+                        <statement>select a.id, a.description || ' (' || a.name || ')'
+                            from location a
+                            join cat_entity b
+                            on b.id = a.id_cat_entity
+                            where b.name = 'LOC.LIMIT.LOCALIZATION.LOCALITY'
+                            and A.Id_Default_Limit = ?
+                            order by 2
+                        </statement>
+                    </sql>
+                    <source>municipio</source>
+                    <parameters>
+                        <parameter>municipio</parameter>
+                    </parameters>
+                </ajax>
+                <validation>
+                    <required>false</required>
+                </validation>
+            </container>
+        </search-param>
+
+
+<!-- TO DO checar necessidade-->
+
+        <search-param>
+            <name>localidade_value_hidden</name>
+            <field>noField</field>
+            <operator>=</operator>
+            <container>
+                <label>localidade</label>
+                <type>hidden</type>
+                <size>25</size>
+            </container>
+        </search-param>
+
+
+        <search-param>
+            <name>endline1</name>
+            <field>nofield</field>
+            <operator>=</operator>
+            <container>
+                <label>nolabel</label>
+                <type>end_line</type>
+                <size>0</size>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>beginline2</name>
+            <field>nofield</field>
+            <operator>=</operator>
+            <container>
+                <label>nolabel</label>
+                <type>begin_line</type>
+                <size>0</size>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>estacao_abastecedora</name>
+            <field>estacao</field>
+            <operator>=</operator>
+            <container>
+                <label>OSP.label.estacao</label>
+                <type>select</type>
+                <size>25</size>
+                <default-value-list>
+                    <sql>
+                        <statement> select distinct a.id, a.NAME
+                            from location a
+                            join cat_entity b
+                            on b.id = a.id_cat_entity
+                            join ISP_INS_EQ_SUPPLIERLOC c
+                            on c.id_bd_pi = a.id
+                            where b.name = 'LOC.PHYSICAL.IP.MAIN.BUILDING.CENTRAL'
+                            order by 2
+                        </statement>
+                    </sql>
+                </default-value-list>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>area_estacao_rede_optica_GPON</name>
+            <field>area_estacao_rede_optica_GPON</field>
+            <operator>=</operator>
+            <container>
+                <label>OSP.label.area_estacao_rede_optica_GPON</label>
+                <type>select</type>
+                <size>25</size>
+                <default-value-list>
+                    <sql>
+                        <statement> select distinct a.id, a.NAME
+                            from location a
+                            join cat_entity b
+                            on b.id = a.id_cat_entity
+                            join ISP_INS_EQ_SUPPLIERLOC c
+                            on c.id_bd_pi = a.id
+                            where b.name = 'LOC.PHYSICAL.IP.MAIN.BUILDING.CENTRAL'
+                            order by 2
+                        </statement>
+                    </sql>
+                </default-value-list>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>area_estacao_rede_optica_multiuso</name>
+            <field>area_estacao_rede_optica_multiuso</field>
+            <operator>=</operator>
+            <container>
+                <label>OSP.label.area_estacao_rede_optica_multiuso</label>
+                <type>select</type>
+                <size>25</size>
+                <default-value-list>
+                    <sql>
+                        <statement> select distinct a.id, a.NAME
+                            from location a
+                            join cat_entity b
+                            on b.id = a.id_cat_entity
+                            join ISP_INS_EQ_SUPPLIERLOC c
+                            on c.id_bd_pi = a.id
+                            where b.name = 'LOC.PHYSICAL.IP.MAIN.BUILDING.CENTRAL'
+                            order by 2
+                        </statement>
+                    </sql>
+                </default-value-list>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>endline2</name>
+            <field>nofield</field>
+            <operator>=</operator>
+            <container>
+                <label>nolabel</label>
+                <type>end_line</type>
+                <size>0</size>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>beginline3</name>
+            <field>nofield</field>
+            <operator>=</operator>
+            <container>
+                <label>nolabel</label>
+                <type>begin_line</type>
+                <size>0</size>
+            </container>
+        </search-param>
+
+
+
+        <search-param>
+            <name>etiqueta_cabo</name>
+            <field>etiqueta_cabo</field>
+            <operator>=</operator>
+            <container>
+                <label>OSP.label.etiqueta_cabo</label>
+                <type>text</type>
+                <size>25</size>
+                <input-size>25</input-size>
+                <ajax>
+                    <sql>
+                        <statement>
+                            select distinct CABLE_NR, CABLE_NR as CABLE_NR1
+                            from OSP_CABLE_EXT
+                            where CABLE_NR is not null
+                            and CABLE_NR like (? || '%') order by lpad(4,CABLE_NR,'0') desc
+                        </statement>
+                    </sql>
+                    <source>cabo_primario</source>
+                    <parameters>
+                        <parameter>cabo_primario</parameter>
+                    </parameters>
+                </ajax>
+            </container>
+        </search-param>
+
+        <search-param>
+            <name>projeto</name>
+            <field>projeto</field>
+            <operator>=</operator>
+            <container>
+                <label>OSP.label.group.1</label>
+                <type>text</type>
+                <size>25</size>
+                <input-size>25</input-size>
+                <ajax>
+                    <sql>
+                        <statement> select name, name as name2 from PROJECT
+                            where name like (? || '%')
+                            order by 1 asc
+                        </statement>
+                    </sql>
+                    <source>projecto</source>
+                    <parameters>
+                        <parameter>projecto</parameter>
+                    </parameters>
+                </ajax>
+            </container>
+        </search-param>
+
+
+
+
+    </search-params>
+
+    <!-- RESULT PARAMS -->
+
+    <result-params>
+
+        <result-param>
+            <name>sigla_uf</name>
+            <search-label>OSP.label.sigla_unidade_federativa</search-label>
+            <fields>
+                <field>uf</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>200</height>
+        </result-param>
+
+        <result-param>
+            <name>nome_uf</name>
+            <search-label>OSP.label.nome_unidade_federativa</search-label>
+            <fields>
+                <field>nome_uf</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>200</height>
+        </result-param>
+
+        <result-param>
+            <name>municipio</name>
+            <search-label>REPORTS.search.municipio</search-label>
+            <fields>
+                <field>mun</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>sigla_localidade</name>
+            <search-label>OSP.label.sigla_localidade</search-label>
+            <fields>
+                <field>sigla_localidade</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>nome_localidade</name>
+            <search-label>OSP.label.nome_localidade</search-label>
+            <fields>
+                <field>nome_localidade</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>sigla_estacao_abastecedora</name>
+            <search-label>OSP.label.sigla_estacao_abastecedora</search-label>
+            <fields>
+                <field>sigla_estacao_abastecedora</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>nome_estacao_abastecedora</name>
+            <search-label>OSP.label.nome_estacao_abastecedora</search-label>
+            <fields>
+                <field>nome_estacao_abastecedora</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>area_estacao_rede_optica_GPON</name>
+            <search-label>OSP.label.area_estacao_rede_optica_GPON</search-label>
+            <fields>
+                <field>area_estacao_rede_optica_GPON</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>area_estacao_rede_optica_multiuso</name>
+            <search-label>OSP.label.area_estacao_rede_optica_multiuso</search-label>
+            <fields>
+                <field>area_estacao_rede_optica_multiuso</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>etiqueta</name>
+            <search-label>OSP.label.etiqueta</search-label>
+            <fields>
+                <field>etiqueta</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>tipo_interno</name>
+            <search-label>label.report.type</search-label>
+            <fields>
+                <field>tipo_interno</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>tipo</name>
+            <search-label>label.type</search-label>
+            <fields>
+                <field>tipo</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>fibras</name>
+            <search-label>OSP.label.fibras</search-label>
+            <fields>
+                <field>fibras</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>codigo_SAP</name>
+            <search-label>OSP.label.codigo_SAP</search-label>
+            <fields>
+                <field>codigo_SAP</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>fabricante</name>
+            <search-label>label.rep.atimo.fabricante</search-label>
+            <fields>
+                <field>fabricante</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>modelo</name>
+            <search-label>label.modelo</search-label>
+            <fields>
+                <field>modelo</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>comp_lance_usuario</name>
+            <search-label>OSP.label.comp_lance_usuario</search-label>
+            <fields>
+                <field>comp-lance-usuario</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>comp_lance_netwin</name>
+            <search-label>OSP.label.comp_lance_netwin</search-label>
+            <fields>
+                <field>comp-lance-netwin</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>secao_maxima</name>
+            <search-label>OSP.label.secao_maxima</search-label>
+            <fields>
+                <field>secao_maxima</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>as-built</name>
+            <search-label>OSP.label.as-built</search-label>
+            <fields>
+                <field>as-built</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>proprietario</name>
+            <search-label>label.proprietario</search-label>
+            <fields>
+                <field>proprietario</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>identificacao_terceiro</name>
+            <search-label>label.report.thirdIdentification</search-label>
+            <fields>
+                <field>identificacao_terceiro</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>fora_padrao</name>
+            <search-label>label.report.outOfPattern</search-label>
+            <fields>
+                <field>fora_padrao</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>rede</name>
+            <search-label>label.report.network</search-label>
+            <fields>
+                <field>rede</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>destinacao</name>
+            <search-label>label.report.destination</search-label>
+            <fields>
+                <field>destinacao</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>numero_cabo</name>
+            <search-label>OSP.label.numero_cabo</search-label>
+            <fields>
+                <field>numero_cabo</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>numero_lance</name>
+            <search-label>OSP.label.numero_lance</search-label>
+            <fields>
+                <field>numero_lance</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>numero_cabo_primario</name>
+            <search-label>OSP.label.numero_cabo_primario</search-label>
+            <fields>
+                <field>numero_cabo_primario</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>numero_cabo_secundario</name>
+            <search-label>OSP.label.numero_cabo_secundario</search-label>
+            <fields>
+                <field>numero_cabo_secundario</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>nome_projeto</name>
+            <search-label>OSP.label.nome_projeto</search-label>
+            <fields>
+                <field>nome_projeto</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>origem_rede</name>
+            <search-label>OSP.label.origem_rede</search-label>
+            <fields>
+                <field>origem_rede</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>origem_infraestrutura</name>
+            <search-label>OSP.label.origem_infraestrutura</search-label>
+            <fields>
+                <field>origem_infraestrutura</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>destino_rede</name>
+            <search-label>OSP.label.destino_rede</search-label>
+            <fields>
+                <field>destino_rede</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>destino_infraestrutura</name>
+            <search-label>OSP.label.destino_infraestrutura</search-label>
+            <fields>
+                <field>destino_infraestrutura</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>tipo_tracado</name>
+            <search-label>OSP.label.tipo_tracado</search-label>
+            <fields>
+                <field>tipo_tracado</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>estado_projeto</name>
+            <search-label>OSP.label.estado_projeto</search-label>
+            <fields>
+                <field>estado_projeto</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>data_estado_projeto</name>
+            <search-label>OSP.label.data_estado_projeto</search-label>
+            <fields>
+                <field>data_estado_projeto</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>estado_ciclo_vida</name>
+            <search-label>OSP.label.estado_ciclo_vida</search-label>
+            <fields>
+                <field>estado_ciclo_vida</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>data_estado_ciclo_vida</name>
+            <search-label>OSP.label.data_estado_ciclo_vida</search-label>
+            <fields>
+                <field>data_estado_ciclo_vida</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>rastreabilidade_origem</name>
+            <search-label>OSP.label.rastreabilidade_origem</search-label>
+            <fields>
+                <field>rastreabilidade_origem</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>disponibilizacao</name>
+            <search-label>OSP.label.disponibilizacao</search-label>
+            <fields>
+                <field>disponibilizacao</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>id_geoplex-geosite</name>
+            <search-label>OSP.label.id_geoplex-geosite</search-label>
+            <fields>
+                <field>id_geoplex-geosite</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>usuario_criacao</name>
+            <search-label>OSP.label.usuario_criacao</search-label>
+            <fields>
+                <field>usuario_criacao</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>empresa_criacao</name>
+            <search-label>OSP.label.empresa_criacao</search-label>
+            <fields>
+                <field>empresa_criacao</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>data_criacao</name>
+            <search-label>OSP.label.data_criacao</search-label>
+            <fields>
+                <field>data_criacao</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>usuario_atualizacao</name>
+            <search-label>OSP.label.usuario_atualizacao</search-label>
+            <fields>
+                <field>usuario_atualizacao</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>empresa_atualizacao</name>
+            <search-label>OSP.label.empresa_atualizacao</search-label>
+            <fields>
+                <field>empresa_atualizacao</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+        <result-param>
+            <name>data_atualizacao</name>
+            <search-label>OSP.label.data_atualizacao</search-label>
+            <fields>
+                <field>data_atualizacao</field>
+            </fields>
+            <align>center</align>
+            <width>80</width>
+            <height>150</height>
+        </result-param>
+
+    </result-params>
+
+</search-metadata>

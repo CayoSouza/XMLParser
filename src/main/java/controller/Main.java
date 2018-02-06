@@ -14,15 +14,15 @@ import java.util.Scanner;
 
 public class Main {
 
-    static final String FILE = "src/main/resources/search.xml";
+    static final String FILE = "src/main/resources/analiticoOcupacaoRede-search.xml";
     static final int ORACLE_CHARACTER_LIMIT = 30;
     static final String BR = "==================================";
     static final String MENU = "" +
-            "=========== M E N U ===========\n" +
-            "|| [1] para gerar mockSQL    ||\n" +
-            "|| [2] para listar field names \n" +
-            "|| [3] para validar field names \n" +
-            "===============================";
+            "============= M E N U ============\n" +
+            "|| [1] para gerar mockSQL       ||\n" +
+            "|| [2] para listar field names  || \n" +
+            "|| [3] para validar field names || \n" +
+            "==================================";
 
     public static void main(String[] args) {
         try {
@@ -46,16 +46,6 @@ public class Main {
             }
             while (scanner.hasNextLine());
 
-            for (ResultParam rp : list) {
-                int limite = 28;
-                if (rp.getName().length() >= limite) {
-                    System.err.println("Tamanho não permitido encontrado: " + rp.getName().length() + " caracteres de " + rp.getName());
-                    System.err.println("O result param: '" + rp.getName() + "' tem mais de " + limite + " caracteres(máximo permitio como identificador Oracle).");
-                }
-                System.out.println(rp.getFields().get(0).getField());
-            }
-            System.out.println("TOTAL: " + list.size());
-            //System.out.println(generateMockSQL(list));
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -93,12 +83,16 @@ public class Main {
     }
 
     private static void validateFieldNames(List<ResultParam> rps) {
+        int erros = 0;
         int limite = ORACLE_CHARACTER_LIMIT;
         for (ResultParam rp : rps) {
             if (rp.getName().length() >= limite) {
                 System.out.println("Tamanho não permitido encontrado: " + rp.getName().length() + " caracteres de '" + rp.getName() + "'");
                 System.out.println("O result param: '" + rp.getName() + "' tem mais de " + limite + " caracteres(máximo permitio como identificador Oracle).");
+                erros++;
             }
         }
+        System.out.println("NÚMERO DE ERROS: " +  erros);
+        System.out.println("FIM DA VALIDAÇÃO.");
     }
 }

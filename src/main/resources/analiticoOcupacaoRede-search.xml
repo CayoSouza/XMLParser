@@ -1,0 +1,454 @@
+<result-params>
+
+    <result-param>
+        <name>sigla_uf</name>
+        <search-label>OSP.label.sigla_unidade_federativa</search-label>
+        <fields>
+            <field>sigla_uf</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>100</height>
+    </result-param>
+
+    <result-param>
+        <name>nome_uf</name>
+        <search-label>OSP.label.nome_unidade_federativa</search-label>
+        <fields>
+            <field>nome_uf</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>municipio</name>
+        <search-label>REPORTS.search.municipio</search-label>
+        <fields>
+            <field>municipio</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>sigla_localidade</name>
+        <search-label>OSP.label.sigla_localidade</search-label>
+        <fields>
+            <field>sigla_localidade</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>80</height>
+    </result-param>
+
+    <result-param>
+        <name>nome_localidade</name>
+        <search-label>OSP.label.nome_localidade</search-label>
+        <fields>
+            <field>nome_localidade</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>nome_estacao_abastecedora</name>
+        <search-label>OSP.label.nome_estacao_abastecedora</search-label>
+        <fields>
+            <field>nome_estacao_abastecedora</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>sigla_estacao_abastecedora</name>
+        <search-label>OSP.label.sigla_estacao_abastecedora</search-label>
+        <fields>
+            <field>sigla_estacao_abastecedora</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>CDOEI</name>
+        <search-label>REPORTS.PDO</search-label>
+        <fields>
+            <field>CDOEI</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>ONT_tipo</name>
+        <search-label>OSP.label.ONT_tipo</search-label>
+        <fields>
+            <field>ONT_tipo</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>ONT_fabricante</name>
+        <search-label>OSP.label.ONT_fabricante</search-label>
+        <fields>
+            <field>ONT_fabricante</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>proprietario</name>
+        <search-label>label.proprietario</search-label>
+        <fields>
+            <field>proprietario</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>dimensoes</name>
+        <search-label>OSP.label.dimensoes</search-label>
+        <fields>
+            <field>dimensoes</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>rede</name>
+        <search-label>label.report.network</search-label>
+        <fields>
+            <field>network</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>modelo</name>
+        <search-label>label.modelo</search-label>
+        <fields>
+            <field>modelo</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>projeto</name>
+        <search-label>OSP.label.projecto</search-label>
+        <fields>
+            <field>projeto</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>codigo_SAP</name>
+        <search-label>OSP.label.codigo_SAP</search-label>
+        <fields>
+            <field>codigo_SAP</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>id_terceiro</name>
+        <search-label>label.report.thirdIdentification</search-label>
+        <fields>
+            <field>id_terceiro</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>fora_padrao</name>
+        <search-label>label.report.outOfPattern</search-label>
+        <fields>
+            <field>fora_padrao</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>atendimento</name>
+        <search-label>label.report.attendance</search-label>
+        <fields>
+            <field>atendimento</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>topologia</name>
+        <search-label>label.report.topology</search-label>
+        <fields>
+            <field>topologia</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>numero</name>
+        <search-label>OSP.label.numero</search-label>
+        <fields>
+            <field>numero</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>celula</name>
+        <search-label>OSP.label.celula</search-label>
+        <fields>
+            <field>celula</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>estado_ciclo_vida</name>
+        <search-label>OSP.label.estado_ciclo_vida</search-label>
+        <fields>
+            <field>estado_ciclo_vida</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>data_estado_ciclo_vida</name>
+        <search-label>OSP.label.data_estado_ciclo_vida</search-label>
+        <fields>
+            <field>data_estado_ciclo_vida</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>estado_operacional</name>
+        <search-label>label.estado_operacional</search-label>
+        <fields>
+            <field>estado_operacional</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>data_estado_operacional</name>
+        <search-label>OSP.label.data_estado_operacional</search-label>
+        <fields>
+            <field>data_estado_operacional</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>infraestrutura</name>
+        <search-label>OSP.label.infraestrutura</search-label>
+        <fields>
+            <field>infraestrutura</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>endereco</name>
+        <search-label>label.address</search-label>
+        <fields>
+            <field>endereco</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>capacidade_CDOEI</name>
+        <search-label>OSP.label.capacidade_da_CDOEI</search-label>
+        <fields>
+            <field>capacidade_CDOEI</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>portas_conectadas_CDOEI</name>
+        <search-label>OSP.label.portas conectadas_da_CDOEI</search-label>
+        <fields>
+            <field>portas_conectadas_CDOEI</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>ocupacao_CDOEI</name>
+        <search-label>OSP.label.portas conectadas_da_CDOEI</search-label>
+        <fields>
+            <field>ocupacao_CDOEI</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>porcentagem_ocupacao</name>
+        <search-label>OSP.label.porcentagem_ocupacao</search-label>
+        <fields>
+            <field>porcentagem_ocupacao</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>origem</name>
+        <search-label>OSP.label.cod.origem</search-label>
+        <fields>
+            <field>origem</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>disponibilizacao</name>
+        <search-label>OSP.label.disponibilizacao</search-label>
+        <fields>
+            <field>disponibilizacao</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>id_geoplex_geosite</name>
+        <search-label>OSP.label.id_geoplex_geosite</search-label>
+        <fields>
+            <field>id_geoplex_geosite</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>usuario_criacao</name>
+        <search-label>OSP.label.usuario_criacao</search-label>
+        <fields>
+            <field>usuario_criacao</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>empresa_criacao</name>
+        <search-label>OSP.label.empresa_criacao</search-label>
+        <fields>
+            <field>empresa_criacao</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>data_criacao</name>
+        <search-label>OSP.label.data_criacao</search-label>
+        <fields>
+            <field>data_criacao</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>80</height>
+    </result-param>
+
+    <result-param>
+        <name>usuario_atualizacao</name>
+        <search-label>OSP.label.usuario_atualizacao</search-label>
+        <fields>
+            <field>usuario_atualizacao</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>empresa_atualizacao</name>
+        <search-label>OSP.label.empresa_atualizacao</search-label>
+        <fields>
+            <field>empresa_atualizacao</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>data_atualizacao</name>
+        <search-label>OSP.label.data_atualizacao</search-label>
+        <fields>
+            <field>data_atualizacao</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>80</height>
+    </result-param>
+
+</result-params>

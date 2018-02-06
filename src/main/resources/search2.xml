@@ -1,0 +1,168 @@
+<result-params>
+
+    <result-param>
+        <name>sigla_uf</name>
+        <search-label>OSP.label.sigla_unidade_federativa</search-label>
+        <fields>
+            <field>sigla_uf</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>100</height>
+    </result-param>
+
+    <result-param>
+        <name>nome_uf</name>
+        <search-label>OSP.label.nome_unidade_federativa</search-label>
+        <fields>
+            <field>nome_uf</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>municipio</name>
+        <search-label>REPORTS.search.municipio</search-label>
+        <fields>
+            <field>municipio</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>sigla_localidade</name>
+        <search-label>OSP.label.sigla_localidade</search-label>
+        <fields>
+            <field>sigla_localidade</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>80</height>
+    </result-param>
+
+    <result-param>
+        <name>nome_localidade</name>
+        <search-label>OSP.label.nome_localidade</search-label>
+        <fields>
+            <field>nome_localidade</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>nome_estacao_abastecedora</name>
+        <search-label>OSP.label.nome_estacao_abastecedora</search-label>
+        <fields>
+            <field>nome_estacao_abastecedora</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>sigla_estacao_abastecedora</name>
+        <search-label>OSP.label.sigla_estacao_abastecedora</search-label>
+        <fields>
+            <field>sigla_estacao_abastecedora</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>etiqueta_cabo_optico</name>
+        <search-label>OSP.label.etiqueta_do_cabo_optico</search-label>
+        <fields>
+            <field>etiqueta_cabo_optico</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>tubo</name>
+        <search-label>OSP.label.tubo</search-label>
+        <fields>
+            <field>tubo</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>fibra</name>
+        <search-label>OSP.label.fibra</search-label>
+        <fields>
+            <field>fibra</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>CDOE_I</name>
+        <search-label>REPORTS.PDO</search-label>
+        <fields>
+            <field>CDOE_I</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>estado_operacional_CDOEI</name>
+        <search-label>OSP.label.estacao_operacional_da_CDOEI</search-label>
+        <fields>
+            <field>estado_operacional_CDOEI</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>data_estado_operacional_CDOEI</name>
+        <search-label>OSP.label.data_estado_operacional_CDOEI</search-label>
+        <fields>
+            <field>data_estado_operacional_CDOEI</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>porta_CDOEI</name>
+        <search-label>OSP.label.porta_CDOEI</search-label>
+        <fields>
+            <field>porta_CDOEI</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+    <result-param>
+        <name>acesso_GPON</name>
+        <search-label>OSP.label.acesso_GPON</search-label>
+        <fields>
+            <field>acesso_GPON</field>
+        </fields>
+        <align>center</align>
+        <width>150</width>
+        <height>150</height>
+    </result-param>
+
+</result-params>
